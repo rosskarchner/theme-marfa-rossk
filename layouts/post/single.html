@@ -34,6 +34,7 @@
 		</div>
 	{{ end }}
     </a>
+	  {{ range .Params.categories }}{{ . }}{{ end }}
   </section>
 </article>
 {{ end }}
