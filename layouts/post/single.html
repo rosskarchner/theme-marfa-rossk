@@ -21,8 +21,7 @@
 
 	
   <section id="post-meta" class="clearfix">
-    <div class="p-author h-card">
-		<!-- Start : Code for adding categories via https://github.com/am1t/musings/blob/6be978ecda12f3b016684f1e5c9579d7d7cb2742/layouts/post/single.html#L14-->
+	  <!-- Start : Code for adding categories via https://github.com/am1t/musings/blob/6be978ecda12f3b016684f1e5c9579d7d7cb2742/layouts/post/single.html#L14-->
 		{{ with .Params.categories  }}
           {{ range . }}
           {{ $name := . }}
@@ -32,6 +31,8 @@
           {{ end }}
       	{{ end }}
 		<!-- End : Code for adding categories -->
+    <div class="p-author h-card">
+		
     <a href="/" class="u-url">
   	{{ if .Params.author }}
 		<img class="u-photo avatar" src="{{ .Params.author.avatar }}" width="96" height="96">
