@@ -8,6 +8,20 @@
       <time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">
         <a class="u-url dates" href="{{ .Permalink }}">{{ .Date.Format "Jan 2, 2006" }}</a>
       </time>
+	    
+	  <span>
+	  <!-- Start : Code for adding categories via https://github.com/am1t/musings/blob/6be978ecda12f3b016684f1e5c9579d7d7cb2742/layouts/post/single.html#L14-->
+	  {{ with .Params.categories  }} in
+          {{ range . }}
+          {{ $name := . }}
+            {{ with $.Site.GetPage "taxonomy" (printf "categories/%s" $name) | default ($.Site.GetPage "taxonomy" (printf "categories/%s" ($name | urlize))) }}
+           <a href="{{ .Permalink }}" class="p-category" >{{ $name }}</a>
+            {{ end -}}
+          {{ end }}
+
+      	{{ end }}
+	</span>
+		<!-- End : Code for adding categories -->
     </h2>
   </header>
   <section class="e-content post-body">
@@ -18,20 +32,6 @@
   <script type="text/javascript" src="https://micro.blog/conversation.js?url={{ .Permalink }}"></script>
   {{ end }}
 
-	  <div>
-	  <!-- Start : Code for adding categories via https://github.com/am1t/musings/blob/6be978ecda12f3b016684f1e5c9579d7d7cb2742/layouts/post/single.html#L14-->
-	  {{ with .Params.categories  }}
-	<ul>
-          {{ range . }}
-          {{ $name := . }}
-            {{ with $.Site.GetPage "taxonomy" (printf "categories/%s" $name) | default ($.Site.GetPage "taxonomy" (printf "categories/%s" ($name | urlize))) }}
-           <li> <a href="{{ .Permalink }}" class="p-category" >{{ $name }}</a></li>
-            {{ end -}}
-          {{ end }}
-	</ul>
-      	{{ end }}
-	</div>
-		<!-- End : Code for adding categories -->
 	
   <section id="post-meta" >
 
