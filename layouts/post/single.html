@@ -8,20 +8,7 @@
       <time class="dt-published" datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}">
         <a class="u-url dates" href="{{ .Permalink }}">{{ .Date.Format "Jan 2, 2006" }}</a>
       </time>
-	    
-	  <span>
-	  <!-- Start : Code for adding categories via https://github.com/am1t/musings/blob/6be978ecda12f3b016684f1e5c9579d7d7cb2742/layouts/post/single.html#L14-->
-	  {{ with .Params.categories  }} in
-          {{ range . }}
-          {{ $name := . }}
-            {{ with $.Site.GetPage "taxonomy" (printf "categories/%s" $name) | default ($.Site.GetPage "taxonomy" (printf "categories/%s" ($name | urlize))) }}
-           <a href="{{ .Permalink }}" class="p-category" >{{ $name }}</a>
-            {{ end -}}
-          {{ end }}
 
-      	{{ end }}
-	</span>
-		<!-- End : Code for adding categories -->
     </h2>
   </header>
   <section class="e-content post-body">
@@ -33,10 +20,7 @@
   {{ end }}
 
 	
-  <section id="post-meta" >
-
-    <div class="p-author h-card">
-		
+  <section id="post-meta p-author h-card clearfix" >
     <a href="/" class="u-url">
   	{{ if .Params.author }}
 		<img class="u-photo avatar" src="{{ .Params.author.avatar }}" width="96" height="96">
@@ -52,7 +36,6 @@
 		</div>
 	{{ end }}
     </a>
-    </div>
   </section>
 </article>
 {{ end }}
