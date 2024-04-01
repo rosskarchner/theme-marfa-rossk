@@ -20,20 +20,22 @@
 
 
 	
-  <section id="post-meta" class="clearfix">
+  <section id="post-meta" >
 	  <div>
 	  <!-- Start : Code for adding categories via https://github.com/am1t/musings/blob/6be978ecda12f3b016684f1e5c9579d7d7cb2742/layouts/post/single.html#L14-->
 	  {{ with .Params.categories  }}
+	<ul>
           {{ range . }}
           {{ $name := . }}
             {{ with $.Site.GetPage "taxonomy" (printf "categories/%s" $name) | default ($.Site.GetPage "taxonomy" (printf "categories/%s" ($name | urlize))) }}
-            <a href="{{ .Permalink }}" class="p-category" >{{ $name }}</a>
+           <li> <a href="{{ .Permalink }}" class="p-category" >{{ $name }}</a></li>
             {{ end -}}
           {{ end }}
+	</ul>
       	{{ end }}
 	</div>
 		<!-- End : Code for adding categories -->
-    <div class="p-author h-card">
+    <div class="p-author h-card clearfix">
 		
     <a href="/" class="u-url">
   	{{ if .Params.author }}
